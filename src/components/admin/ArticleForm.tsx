@@ -1,10 +1,14 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import "@uiw/react-md-editor/markdown-editor.css";
-import { savePost, type PostInput } from "@/app/admin/articles/actions";
+import {
+  savePost,
+  uploadArticleImage,
+  type PostInput,
+} from "@/app/admin/articles/actions";
 import { slugify, type Post } from "@/lib/posts";
 
 // Éditeur markdown chargé côté client uniquement (accède à window).
@@ -32,6 +36,30 @@ export function ArticleForm({ post }: { post?: Post }) {
   const [statut, setStatut] = useState<"brouillon" | "publie">(
     post?.statut ?? "brouillon",
   );
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
+  async function onPickImage(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = ""; // permet de re-sélectionner le même fichier
+    if (!file) return;
+
+    setUploadError(null);
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await uploadArticleImage(formData);
+      if ("error" in res) setUploadError(res.error);
+      else setImage(res.url);
+    } catch {
+      setUploadError("Échec de l'envoi. Réessayez.");
+    } finally {
+      setUploading(false);
+    }
+  }
 
   function onTitreChange(value: string) {
     setTitre(value);
@@ -200,16 +228,40 @@ export function ArticleForm({ post }: { post?: Post }) {
           </div>
 
           <div>
-            <label htmlFor="image" className={label}>
-              Image (URL)
-            </label>
+            <span className={label}>Image de couverture</span>
+
             <input
-              id="image"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-              placeholder="https://…"
-              className={`mt-1.5 ${field}`}
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={onPickImage}
+              className="hidden"
             />
+
+            <div className="mt-1.5 flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploading}
+                className="inline-flex items-center gap-2 rounded-full bg-prune px-4 py-2 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep disabled:opacity-60"
+              >
+                {uploading ? "Envoi…" : "Téléverser une image"}
+              </button>
+              {image ? (
+                <button
+                  type="button"
+                  onClick={() => setImage("")}
+                  className="text-xs font-medium text-greige underline transition-colors hover:text-prune"
+                >
+                  Retirer
+                </button>
+              ) : null}
+            </div>
+
+            {uploadError ? (
+              <p className="mt-2 text-xs text-red-600">{uploadError}</p>
+            ) : null}
+
             {image ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
@@ -218,6 +270,18 @@ export function ArticleForm({ post }: { post?: Post }) {
                 className="mt-3 aspect-[16/9] w-full rounded-lg object-cover"
               />
             ) : null}
+
+            {/* Option secondaire : coller une URL */}
+            <label htmlFor="image" className="mt-3 block text-xs text-greige">
+              … ou coller une URL
+            </label>
+            <input
+              id="image"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+              placeholder="https://…"
+              className={`mt-1 ${field}`}
+            />
           </div>
         </aside>
       </div>

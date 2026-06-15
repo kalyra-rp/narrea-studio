@@ -16,6 +16,68 @@ export type PostInput = {
 
 type ActionResult = { ok: true } | { error: string };
 
+const BUCKET = "blog-images";
+const MAX_IMAGE_BYTES = 5 * 1024 * 1024; // 5 Mo
+const ALLOWED_TYPES = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/gif",
+  "image/avif",
+];
+
+// S'assure que le bucket public existe (idempotent).
+async function ensureBucket(
+  supabase: ReturnType<typeof createAdminClient>,
+): Promise<void> {
+  const { error } = await supabase.storage.createBucket(BUCKET, {
+    public: true,
+    fileSizeLimit: MAX_IMAGE_BYTES,
+  });
+  // « already exists » est attendu après la première création : on l'ignore.
+  if (error && !/exist/i.test(error.message)) {
+    throw new Error(error.message);
+  }
+}
+
+// Téléverse une image vers Supabase Storage et renvoie son URL publique.
+// Passe par la clé service_role (côté serveur) — jamais exposée au client.
+export async function uploadArticleImage(
+  formData: FormData,
+): Promise<{ url: string } | { error: string }> {
+  const file = formData.get("file");
+  if (!(file instanceof File) || file.size === 0) {
+    return { error: "Aucun fichier reçu." };
+  }
+  if (!ALLOWED_TYPES.includes(file.type)) {
+    return { error: "Format non supporté (JPEG, PNG, WebP, GIF ou AVIF)." };
+  }
+  if (file.size > MAX_IMAGE_BYTES) {
+    return { error: "Image trop lourde (5 Mo maximum)." };
+  }
+
+  const supabase = createAdminClient();
+  try {
+    await ensureBucket(supabase);
+  } catch (e) {
+    return { error: `Impossible de préparer le stockage : ${(e as Error).message}` };
+  }
+
+  const ext = (file.name.split(".").pop() || "bin").toLowerCase();
+  const path = `articles/${crypto.randomUUID()}.${ext}`;
+  const buffer = Buffer.from(await file.arrayBuffer());
+
+  const { error: uploadError } = await supabase.storage
+    .from(BUCKET)
+    .upload(path, buffer, { contentType: file.type, upsert: false });
+  if (uploadError) {
+    return { error: uploadError.message };
+  }
+
+  const { data } = supabase.storage.from(BUCKET).getPublicUrl(path);
+  return { url: data.publicUrl };
+}
+
 // Revalide les pages impactées (admin + blog public).
 function revalidateBlog() {
   revalidatePath("/admin/articles");
