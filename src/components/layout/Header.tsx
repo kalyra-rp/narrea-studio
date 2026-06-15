@@ -32,10 +32,10 @@ export function Header() {
         </nav>
 
         <Link
-          href="/contact"
+          href="/services#audit-clarte"
           className="rounded-full bg-prune px-5 py-2 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep"
         >
-          Travaillons ensemble
+          Réserver un Audit
         </Link>
       </Container>
     </header>
