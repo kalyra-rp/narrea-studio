@@ -80,3 +80,69 @@ h4 {
   color: var(--color-prune);
   text-decoration: underline;
 }
+
+/* Rendu markdown des articles du journal */
+.article-prose {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: color-mix(in srgb, var(--color-ink) 85%, transparent);
+}
+
+.article-prose > * + * {
+  margin-top: 1.25rem;
+}
+
+.article-prose h2 {
+  margin-top: 2.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--color-prune);
+}
+
+.article-prose h3 {
+  margin-top: 2rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-prune);
+}
+
+.article-prose a {
+  color: var(--color-prune);
+  text-decoration: underline;
+}
+
+.article-prose strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.article-prose ul,
+.article-prose ol {
+  padding-left: 1.5rem;
+}
+
+.article-prose ul {
+  list-style: disc;
+}
+
+.article-prose ol {
+  list-style: decimal;
+}
+
+.article-prose blockquote {
+  border-left: 3px solid color-mix(in srgb, var(--color-gold) 60%, transparent);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: var(--color-greige);
+}
+
+.article-prose code {
+  background-color: var(--color-champagne);
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.3rem;
+  font-size: 0.9em;
+}
+
+.article-prose img {
+  border-radius: 1rem;
+}

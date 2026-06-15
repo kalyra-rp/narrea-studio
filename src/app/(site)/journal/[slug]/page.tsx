@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Container } from "@/components/ui/Container";
 import { formatPostDate, getPublishedPostBySlug } from "@/lib/posts";
 
@@ -53,11 +55,6 @@ export default async function ArticlePage({
     notFound();
   }
 
-  const paragraphs = (post.contenu ?? "")
-    .split(/\n{2,}/)
-    .map((p) => p.trim())
-    .filter(Boolean);
-
   return (
     <article>
       {/* En-tête de l'article */}
@@ -102,15 +99,10 @@ export default async function ArticlePage({
               {post.extrait}
             </p>
           ) : null}
-          <div className="mt-8 flex flex-col gap-5">
-            {paragraphs.map((p, i) => (
-              <p
-                key={i}
-                className="whitespace-pre-line text-base leading-relaxed text-ink/85"
-              >
-                {p}
-              </p>
-            ))}
+          <div className="article-prose mt-8">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {post.contenu ?? ""}
+            </ReactMarkdown>
           </div>
 
           <div className="mt-14 border-t rule-gold pt-8 text-center">

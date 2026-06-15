@@ -55,3 +55,14 @@ export function formatPostDate(iso: string): string {
     year: "numeric",
   }).format(new Date(iso));
 }
+
+// Génère un slug propre à partir d'un titre (accents retirés, minuscules, tirets).
+export function slugify(input: string): string {
+  return input
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "") // accents (marques diacritiques)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80);
+}
