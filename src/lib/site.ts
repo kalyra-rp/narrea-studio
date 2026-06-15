@@ -22,3 +22,29 @@ export const legalNav: { label: string; href: string }[] = [
   { label: "CGV", href: "/cgv" },
   { label: "Confidentialité", href: "/confidentialite" },
 ];
+
+// Les 3 offres principales — réutilisées sur l'accueil et la future page /services.
+export const mainOffers: {
+  slug: string;
+  title: string;
+  promise: string;
+}[] = [
+  {
+    slug: "audit-clarte",
+    title: "Audit Clarté",
+    promise:
+      "On met votre offre au clair : message, cible et positionnement, pour savoir exactement quoi dire et à qui.",
+  },
+  {
+    slug: "kit-presence-pro",
+    title: "Kit Présence Pro",
+    promise:
+      "Une présence en ligne cohérente et professionnelle : les supports essentiels, prêts à l'emploi.",
+  },
+  {
+    slug: "lancement-signature",
+    title: "Lancement Signature",
+    promise:
+      "Votre offre structurée de A à Z et un lancement soigné, pour vendre simplement et avec confiance.",
+  },
+];
