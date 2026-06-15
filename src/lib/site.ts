@@ -9,7 +9,6 @@ export const site = {
 // Réseaux et contact — réutilisés partout (header, footer, contact).
 export const socials = {
   email: "contact@narrea.studio",
-  linkedin: "https://www.linkedin.com/in/christelle-faggi",
   comeup: "https://comeup.com/fr/@narrea-studio",
 } as const;
 
@@ -125,7 +124,7 @@ export const services: Offer[] = [
     promise:
       "Je conçois votre serveur Discord — clair, pratique et à votre image. Un espace où chacun trouve sa place tout de suite.",
     forWhom:
-      "Une marque, un créateur, une formation ou une équipe qui veut un espace communautaire professionnel et bien rangé. (Cadrage B2B / pro — pas de serveurs de jeu ou de RP loisir.)",
+      "Une marque, un créateur, une formation ou une équipe qui veut un espace communautaire professionnel et bien rangé.",
     includes: [
       "Une arborescence pensée (catégories et salons utiles, sans superflu)",
       "Des rôles et permissions propres et logiques",

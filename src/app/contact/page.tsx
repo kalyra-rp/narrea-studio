@@ -45,19 +45,6 @@ export default function ContactPage() {
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-medium text-prune">LinkedIn</dt>
-                  <dd className="mt-1 text-greige">
-                    <a
-                      href={socials.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline transition-colors hover:text-prune"
-                    >
-                      Christelle Faggi
-                    </a>
-                  </dd>
-                </div>
-                <div>
                   <dt className="font-medium text-prune">ComeUp</dt>
                   <dd className="mt-1 text-greige">
                     <a

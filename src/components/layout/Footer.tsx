@@ -34,14 +34,6 @@ export function Footer() {
               Email
             </a>
             <a
-              href={socials.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-champagne/80 transition-colors hover:text-gold"
-            >
-              LinkedIn
-            </a>
-            <a
               href={socials.comeup}
               target="_blank"
               rel="noopener noreferrer"

@@ -130,7 +130,7 @@ export default function Home() {
       <section className="bg-champagne/40">
         <Container className="py-20 sm:py-24">
           <div className="text-center">
-            <p className="font-script text-xl text-gold-dark">Elles en parlent</p>
+            <p className="font-script text-xl text-gold-dark">On en parle</p>
             <h2 className="mt-3 font-serif text-3xl font-semibold text-prune sm:text-4xl">
               Ce qu&apos;en disent mes clients
             </h2>
