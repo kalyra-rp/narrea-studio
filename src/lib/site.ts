@@ -122,7 +122,7 @@ export const services: Offer[] = [
     slug: "discord",
     title: "Serveur Discord pro",
     promise:
-      "Je conçois votre serveur Discord — clair, pratique et à votre image. Un espace où chacun trouve sa place tout de suite.",
+      "Je conçois votre serveur Discord — clair, pratique et à votre image. Un espace où chaque membre trouve sa place tout de suite.",
     forWhom:
       "Une marque, un créateur, une formation ou une équipe qui veut un espace communautaire professionnel et bien rangé.",
     includes: [

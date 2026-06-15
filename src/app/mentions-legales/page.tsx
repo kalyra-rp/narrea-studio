@@ -27,8 +27,8 @@ export default function MentionsLegalesPage() {
         Email : contact@narrea.studio
       </p>
 
-      <h2>Directeur·rice de la publication</h2>
-      <p>[Nom du ou de la responsable de la publication].</p>
+      <h2>Responsable de la publication</h2>
+      <p>[Nom de la personne responsable de la publication].</p>
 
       <h2>Hébergement</h2>
       <p>

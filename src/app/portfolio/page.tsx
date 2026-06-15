@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 const cases = [
   {
     title: "Cas client à venir",
-    sector: "Indépendante · service",
+    sector: "Activité de service",
     summary:
       "Un avant / après illustrant la mise au clair de l'offre et la nouvelle présence en ligne.",
   },
   {
     title: "Cas client à venir",
-    sector: "Créateur · produit",
+    sector: "Création de produit",
     summary:
       "La structuration d'un lancement, de l'offre aux supports de vente.",
   },
