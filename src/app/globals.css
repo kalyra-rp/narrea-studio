@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* ----------------------------------------------------------------------------
+   Narrea Studio — Tokens de Direction Artistique
+   Tailwind v4 : les tokens sont déclarés ici via @theme (pas de tailwind.config)
+---------------------------------------------------------------------------- */
+
+@theme {
+  /* Couleurs de marque */
+  --color-prune: #5b2e4e; /* Marque */
+  --color-prune-deep: #3f2138; /* Prune profond */
+  --color-gold: #e3ac3a; /* Accent — doré miel */
+  --color-gold-dark: #c8902a; /* Doré foncé */
+  --color-champagne: #f1dfb8; /* Fond doux */
+  --color-ivory: #faf4e8; /* Fond principal */
+  --color-ink: #2e1826; /* Texte */
+  --color-greige: #7c6b74; /* Texte secondaire */
+
+  /* Alias sémantiques */
+  --color-background: var(--color-ivory);
+  --color-foreground: var(--color-ink);
+
+  /* Typographies (variables injectées par next/font dans le layout) */
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-hanken);
+  --font-script: var(--font-caveat);
+}
+
+/* ----------------------------------------------------------------------------
+   Base
+---------------------------------------------------------------------------- */
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+/* Filet doré fin — utilitaire réutilisable pour la DA */
+@utility rule-gold {
+  border-color: color-mix(in srgb, var(--color-gold) 45%, transparent);
+}
