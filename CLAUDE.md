@@ -124,3 +124,8 @@ Le blog est **géré en base via `/admin`** (pas de fichiers MDX, pas d'outil ti
 7. **Finitions** — légal, SEO (sitemap, metadata, Open Graph), déploiement Vercel.
 
 > Note : l'espace client (étapes 4-5) est un mini-CRM — la partie la plus lourde. Mettre d'abord le site + blog en ligne (étapes 1-3).
+
+## ⚠️ Faits & ton — à respecter absolument
+
+- **Discord** = un *service de création de serveurs Discord pour des clients* (structure, rôles, design, bots & options). Ce n'est **PAS** une communauté animée par Narrea, ni un Discord à rejoindre. Ne jamais le présenter comme un espace communautaire.
+- **Cible mixte** (femmes et hommes). Utiliser des tournures **neutres** ou « celles et ceux ». **Ne jamais** mettre le féminin par défaut (« clientes », « elles », « entouré·e » imposé…).
