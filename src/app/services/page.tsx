@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { services } from "@/lib/site";
+import { services, socials } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -16,7 +16,7 @@ export default function ServicesPage() {
       <PageHeader
         eyebrow="Les offres"
         title="Travaillons ensemble, à votre rythme"
-        intro="De la mise au clair de votre offre à un accompagnement continu : choisissez le format qui correspond à là où vous en êtes."
+        intro="De la mise au clair de votre offre à un accompagnement continu : choisissez le format adapté à là où vous en êtes."
       />
 
       <section>
@@ -42,11 +42,14 @@ export default function ServicesPage() {
                   <p className="mt-4 text-sm font-medium text-greige">
                     {offer.forWhom}
                   </p>
+                  <p className="mt-5 font-serif text-xl font-semibold text-prune">
+                    {offer.price}
+                  </p>
                   <Link
-                    href="/contact"
-                    className="mt-7 inline-flex rounded-full bg-prune px-6 py-3 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep"
+                    href={offer.cta.href}
+                    className="mt-6 inline-flex rounded-full bg-prune px-6 py-3 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep"
                   >
-                    Me contacter
+                    {offer.cta.label}
                   </Link>
                 </div>
 
@@ -57,7 +60,7 @@ export default function ServicesPage() {
                   }`}
                 >
                   <p className="font-serif text-lg font-semibold text-prune">
-                    Ce qui est inclus
+                    {offer.includesLabel ?? "Ce qui est inclus"}
                   </p>
                   <ul className="mt-5 flex flex-col gap-3">
                     {offer.includes.map((item) => (
@@ -72,6 +75,31 @@ export default function ServicesPage() {
                 </div>
               </article>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Prestations cadrées — ComeUp */}
+      <section className="bg-champagne/40">
+        <Container className="py-16 sm:py-20">
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-3xl border rule-gold bg-ivory p-10 text-center sm:p-14">
+            <h2 className="font-serif text-3xl font-semibold text-prune sm:text-4xl">
+              Vous préférez une prestation prête à commander ?
+            </h2>
+            <p className="max-w-2xl text-base leading-relaxed text-ink/80">
+              Pour les besoins précis et à périmètre fixe — clarifier votre offre,
+              rédiger votre bio, créer vos visuels, monter votre Discord —
+              retrouvez mes services directement sur ComeUp. Commande en quelques
+              clics, sans rendez-vous.
+            </p>
+            <a
+              href={socials.comeup}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex rounded-full bg-prune px-7 py-3 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep"
+            >
+              Voir mes services sur ComeUp
+            </a>
           </div>
         </Container>
       </section>

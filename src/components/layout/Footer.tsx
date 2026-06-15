@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { legalNav, mainNav, site } from "@/lib/site";
+import { legalNav, mainNav, site, socials } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -24,6 +24,32 @@ export function Footer() {
               </Link>
             ))}
           </nav>
+
+          <div className="flex flex-col gap-2 text-sm">
+            <p className="font-medium text-ivory">Retrouvez-moi</p>
+            <a
+              href={`mailto:${socials.email}`}
+              className="text-champagne/80 transition-colors hover:text-gold"
+            >
+              Email
+            </a>
+            <a
+              href={socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-champagne/80 transition-colors hover:text-gold"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={socials.comeup}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-champagne/80 transition-colors hover:text-gold"
+            >
+              ComeUp
+            </a>
+          </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-champagne/15 pt-6 text-xs text-champagne/60 sm:flex-row sm:items-center sm:justify-between">

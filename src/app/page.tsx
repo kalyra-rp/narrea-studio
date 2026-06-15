@@ -132,7 +132,7 @@ export default function Home() {
           <div className="text-center">
             <p className="font-script text-xl text-gold-dark">Elles en parlent</p>
             <h2 className="mt-3 font-serif text-3xl font-semibold text-prune sm:text-4xl">
-              Ce qu&apos;en disent mes clientes
+              Ce qu&apos;en disent mes clients
             </h2>
           </div>
 

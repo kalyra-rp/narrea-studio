@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { socials } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -36,17 +37,37 @@ export default function ContactPage() {
                   <dt className="font-medium text-prune">Email</dt>
                   <dd className="mt-1 text-greige">
                     <a
-                      href="mailto:contact@narrea.studio"
+                      href={`mailto:${socials.email}`}
                       className="underline transition-colors hover:text-prune"
                     >
-                      contact@narrea.studio
+                      {socials.email}
                     </a>
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-medium text-prune">Communauté</dt>
+                  <dt className="font-medium text-prune">LinkedIn</dt>
                   <dd className="mt-1 text-greige">
-                    Rejoignez le Discord depuis la page Services.
+                    <a
+                      href={socials.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline transition-colors hover:text-prune"
+                    >
+                      Christelle Faggi
+                    </a>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-prune">ComeUp</dt>
+                  <dd className="mt-1 text-greige">
+                    <a
+                      href={socials.comeup}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline transition-colors hover:text-prune"
+                    >
+                      Mes services prêts à commander
+                    </a>
                   </dd>
                 </div>
               </dl>

@@ -7,7 +7,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b rule-gold bg-ivory/85 backdrop-blur">
       <Container className="flex h-20 items-center justify-between">
         {/* Logo « le sceau » — placeholder typographique en attendant le SVG */}
-        <Link href="/" className="flex items-center gap-3" aria-label={`${site.name} — accueil`}>
+        <Link href="/" className="flex items-center gap-3.5" aria-label={`${site.name} — accueil`}>
           <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gold text-prune font-serif text-xl font-semibold">
             N
           </span>
