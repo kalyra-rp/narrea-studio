@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { AuthNav } from "@/components/layout/AuthNav";
 import { mainNav, site } from "@/lib/site";
 
 export function Header() {
@@ -16,27 +17,33 @@ export function Header() {
           </span>
         </Link>
 
-        <nav aria-label="Navigation principale" className="hidden md:block">
-          <ul className="flex items-center gap-8 text-sm font-medium text-ink">
-            {mainNav.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="transition-colors hover:text-prune"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="flex items-center gap-6">
+          <nav aria-label="Navigation principale" className="hidden md:block">
+            <ul className="flex items-center gap-8 text-sm font-medium text-ink">
+              {mainNav.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="transition-colors hover:text-prune"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        <Link
-          href="/services#audit-clarte"
-          className="rounded-full bg-prune px-5 py-2 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep"
-        >
-          Réserver un Audit
-        </Link>
+          <span className="hidden md:inline-flex">
+            <AuthNav />
+          </span>
+
+          <Link
+            href="/services#audit-clarte"
+            className="rounded-full bg-prune px-5 py-2 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep"
+          >
+            Réserver un Audit
+          </Link>
+        </div>
       </Container>
     </header>
   );

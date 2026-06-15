@@ -30,8 +30,8 @@ export default function ConnexionPage() {
             Connexion
           </h1>
           <p className="mt-2 text-sm text-greige">
-            Entrez votre email : vous recevrez un lien magique pour vous
-            connecter, sans mot de passe.
+            Espace réservé. Connectez-vous avec votre email et votre mot de
+            passe.
           </p>
 
           <Suspense fallback={null}>
