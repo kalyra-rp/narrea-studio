@@ -35,13 +35,6 @@ export function Header() {
 
           {/* État de connexion — visible sur desktop ET mobile */}
           <AuthNav />
-
-          <Link
-            href="/services#audit-clarte"
-            className="hidden rounded-full bg-prune px-5 py-2 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep md:inline-flex"
-          >
-            Réserver un Audit
-          </Link>
         </div>
       </Container>
     </header>

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { mainOffers } from "@/lib/site";
 
 export default function Home() {
   return (
@@ -8,8 +7,10 @@ export default function Home() {
       {/* ───────────────────────── Hero ───────────────────────── */}
       <section className="relative overflow-hidden">
         <Container className="py-24 text-center sm:py-32">
-          <p className="font-script text-2xl text-gold-dark">Narrea Studio</p>
-          <h1 className="mx-auto mt-4 max-w-3xl font-serif text-5xl font-semibold leading-[1.1] text-prune sm:text-6xl">
+          <p className="font-script text-6xl leading-none text-gold-dark sm:text-8xl">
+            Narrea Studio
+          </p>
+          <h1 className="mx-auto mt-8 max-w-3xl font-serif text-4xl font-semibold leading-[1.1] text-prune sm:text-5xl">
             Votre savoir-faire mérite d&apos;être vu, compris et acheté.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-greige sm:text-xl">
@@ -67,37 +68,27 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* ───────────────── Les 3 offres principales ───────────────── */}
+      {/* ───────────────── Les offres (aperçu → catalogue) ───────────────── */}
       <section className="bg-prune-deep text-champagne">
-        <Container className="py-20 sm:py-24">
-          <div className="text-center">
-            <p className="font-script text-xl text-gold">Par où commencer</p>
-            <h2 className="mt-3 font-serif text-3xl font-semibold text-ivory sm:text-4xl">
-              Trois façons de travailler ensemble
-            </h2>
-          </div>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {mainOffers.map((offer) => (
-              <article
-                key={offer.slug}
-                className="flex flex-col rounded-2xl border border-gold/25 bg-ivory/[0.03] p-8 transition-colors hover:border-gold/60"
-              >
-                <h3 className="font-serif text-2xl font-semibold text-ivory">
-                  {offer.title}
-                </h3>
-                <p className="mt-4 flex-1 text-sm leading-relaxed text-champagne/80">
-                  {offer.promise}
-                </p>
-                <Link
-                  href={`/services#${offer.slug}`}
-                  className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-gold transition-colors hover:text-gold-dark"
-                >
-                  En savoir plus
-                  <span aria-hidden="true">→</span>
-                </Link>
-              </article>
-            ))}
+        <Container className="py-20 text-center sm:py-24">
+          <p className="font-script text-xl text-gold">Les offres</p>
+          <h2 className="mx-auto mt-3 max-w-2xl font-serif text-3xl font-semibold text-ivory sm:text-4xl">
+            De l&apos;audit à l&apos;accompagnement complet
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-champagne/85 sm:text-lg">
+            Selon là où vous en êtes, je vous aide à clarifier votre offre, à
+            structurer une présence soignée ou à lancer un projet de A à Z — avec
+            la possibilité d&apos;un accompagnement continu. Audits, kits prêts à
+            l&apos;emploi, lancements et suivi mensuel : tout le détail vit sur la
+            page services.
+          </p>
+          <div className="mt-9">
+            <Link
+              href="/services"
+              className="inline-flex rounded-full bg-gold px-7 py-3 text-sm font-semibold text-prune-deep transition-colors hover:bg-gold-dark"
+            >
+              Voir le catalogue
+            </Link>
           </div>
         </Container>
       </section>
@@ -179,6 +170,41 @@ export default function Home() {
               M&apos;écrire
             </Link>
           </div>
+        </Container>
+      </section>
+
+      {/* ───────────────────── Newsletter ───────────────────── */}
+      <section className="bg-champagne/40">
+        <Container className="py-16 text-center sm:py-20">
+          <p className="font-script text-xl text-gold-dark">La newsletter</p>
+          <h2 className="mx-auto mt-2 max-w-xl font-serif text-3xl font-semibold text-prune sm:text-4xl">
+            Des idées claires, dans votre boîte mail
+          </h2>
+          <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-greige">
+            Quelques conseils concrets pour clarifier votre offre et structurer
+            votre présence. Sans spam, désinscription en un clic.
+          </p>
+
+          {/* Branché plus tard sur MailerLite (étape 6), comme /ressources. */}
+          <form className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
+            <input
+              type="email"
+              required
+              autoComplete="email"
+              placeholder="vous@exemple.com"
+              aria-label="Votre email"
+              className="w-full rounded-full border border-prune/20 bg-ivory px-5 py-3 text-sm text-ink placeholder:text-greige/60 focus:border-prune focus:outline-none focus:ring-2 focus:ring-gold/40"
+            />
+            <button
+              type="submit"
+              className="shrink-0 rounded-full bg-prune px-6 py-3 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep"
+            >
+              S&apos;inscrire
+            </button>
+          </form>
+          <p className="mt-3 text-xs text-greige">
+            Inscription activée prochainement.
+          </p>
         </Container>
       </section>
     </>
