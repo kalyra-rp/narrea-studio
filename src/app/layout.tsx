@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Hanken_Grotesk, Caveat } from "next/font/google";
 import "./globals.css";
+import { site, siteUrl } from "@/lib/site";
 
 // Titres — serif élégante
 const cormorant = Cormorant_Garamond({
@@ -26,13 +27,30 @@ const caveat = Caveat({
   display: "swap",
 });
 
+const description =
+  "Studio digital qui aide les indépendants, créateurs et petites entreprises à clarifier leur offre, structurer leur présence en ligne et créer des supports prêts à vendre.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Narrea Studio — Clarifiez votre offre. Structurez votre présence.",
     template: "%s · Narrea Studio",
   },
-  description:
-    "Studio digital qui aide les indépendants, créateurs et petites entreprises à clarifier leur offre, structurer leur présence en ligne et créer des supports prêts à vendre.",
+  description,
+  applicationName: site.name,
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: site.name,
+    title: "Narrea Studio — Clarifiez votre offre. Structurez votre présence.",
+    description,
+    url: siteUrl,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Narrea Studio",
+    description,
+  },
 };
 
 export default function RootLayout({

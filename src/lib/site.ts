@@ -6,6 +6,11 @@ export const site = {
   est: "EST. 2026",
 } as const;
 
+// URL publique du site (configurable via Vercel ; sinon valeur par défaut).
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://narrea.studio"
+).replace(/\/$/, "");
+
 // Contact — réutilisé partout (header, footer, contact).
 export const socials = {
   email: "contact@narrea.studio",
