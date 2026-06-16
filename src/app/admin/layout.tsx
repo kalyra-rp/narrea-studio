@@ -41,7 +41,7 @@ export default async function AdminLayout({
           <div className="flex items-center gap-4 text-sm">
             <Link
               href="/"
-              className="hidden text-ivory/70 transition-colors hover:text-gold sm:inline"
+              className="text-ivory/70 transition-colors hover:text-gold"
             >
               ← Voir le site
             </Link>

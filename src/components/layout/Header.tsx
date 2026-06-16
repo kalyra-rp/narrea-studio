@@ -1,9 +1,13 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { AuthNav } from "@/components/layout/AuthNav";
+import { MobileNav } from "@/components/layout/MobileNav";
+import { getSessionUser } from "@/lib/auth";
 import { mainNav, site } from "@/lib/site";
 
-export function Header() {
+export async function Header() {
+  const user = await getSessionUser();
+
   return (
     <header className="sticky top-0 z-40 border-b rule-gold bg-ivory/85 backdrop-blur">
       <Container className="flex h-20 items-center justify-between gap-3">
@@ -33,8 +37,13 @@ export function Header() {
             </ul>
           </nav>
 
-          {/* État de connexion — visible sur desktop ET mobile */}
-          <AuthNav />
+          {/* Desktop : état de connexion */}
+          <div className="hidden md:block">
+            <AuthNav />
+          </div>
+
+          {/* Mobile : menu hamburger (inclut nav + accès connexion/espace) */}
+          <MobileNav role={user ? user.role : null} />
         </div>
       </Container>
     </header>
