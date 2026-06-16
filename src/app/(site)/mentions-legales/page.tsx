@@ -8,39 +8,51 @@ export const metadata: Metadata = {
 
 export default function MentionsLegalesPage() {
   return (
-    <LegalLayout title="Mentions légales" updated="à compléter">
-      <p>
-        <em>
-          Modèle à compléter avec vos informations réelles avant la mise en
-          ligne.
-        </em>
-      </p>
-
+    <LegalLayout title="Mentions légales" updated="16/06/2026">
       <h2>Éditeur du site</h2>
       <p>
-        Narrea Studio — [raison sociale / nom de l&apos;entrepreneur]
-        <br />
-        [forme juridique], [adresse]
-        <br />
-        SIRET : [numéro] · TVA intracommunautaire : [numéro]
-        <br />
-        Email : contact@narrea.studio
+        Le présent site, accessible à l&apos;adresse narrea.studio, est édité par{" "}
+        <strong>Christelle Faggi</strong>, travailleur autonome (entreprise
+        individuelle), exerçant sous le nom commercial{" "}
+        <strong>Narrea Studio</strong>.
       </p>
+      <ul>
+        <li>Nom légal : Christelle Faggi</li>
+        <li>Nom commercial : Narrea Studio</li>
+        <li>Courriel : contact@narrea.studio</li>
+        <li>Responsable de la publication : Christelle Faggi</li>
+      </ul>
 
-      <h2>Responsable de la publication</h2>
-      <p>[Nom de la personne responsable de la publication].</p>
-
-      <h2>Hébergement</h2>
+      <h2>Hébergement et prestataires techniques</h2>
+      <ul>
+        <li>
+          Hébergement du site : Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA
+          91789, États-Unis — vercel.com
+        </li>
+        <li>
+          Base de données, authentification et stockage : Supabase (serveurs
+          situés en Union européenne — Irlande) — supabase.com
+        </li>
+        <li>
+          Envoi des courriels (contact, notifications) : Resend — resend.com
+        </li>
+        <li>
+          Vente et livraison des produits numériques : Payhip — payhip.com
+        </li>
+      </ul>
       <p>
-        Le site est hébergé par [nom de l&apos;hébergeur], [adresse de
-        l&apos;hébergeur].
+        Certains de ces prestataires hébergent des données <strong>hors du
+        Québec</strong> ; voir la{" "}
+        <a href="/confidentialite">Politique de confidentialité</a> pour les
+        modalités.
       </p>
 
       <h2>Propriété intellectuelle</h2>
       <p>
-        L&apos;ensemble des contenus présents sur ce site (textes, visuels,
-        logo, identité) est la propriété de Narrea Studio, sauf mention
-        contraire. Toute reproduction sans autorisation est interdite.
+        L&apos;ensemble des contenus du site (textes, visuels, mise en page, nom
+        et logo « Narrea Studio ») est protégé par le droit d&apos;auteur. Toute
+        reproduction ou réutilisation, totale ou partielle, sans autorisation
+        écrite préalable, est interdite.
       </p>
     </LegalLayout>
   );

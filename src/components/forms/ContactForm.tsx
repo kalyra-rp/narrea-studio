@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import Link from "next/link";
 import { sendContactMessage } from "@/app/(site)/contact/actions";
 import { services } from "@/lib/site";
 
@@ -122,6 +123,18 @@ export function ContactForm({ initialSujet }: { initialSujet: string }) {
       >
         {isPending ? "Envoi…" : "Envoyer le message"}
       </button>
+
+      <p className="mt-4 text-xs leading-relaxed text-greige">
+        Les informations transmises servent uniquement à traiter votre demande.
+        Elles ne sont jamais vendues. En savoir plus dans notre{" "}
+        <Link
+          href="/confidentialite"
+          className="underline transition-colors hover:text-prune"
+        >
+          Politique de confidentialité
+        </Link>
+        .
+      </p>
     </form>
   );
 }

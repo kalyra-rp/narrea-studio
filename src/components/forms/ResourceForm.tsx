@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import Link from "next/link";
 import { subscribeToResource } from "@/app/(site)/ressources/actions";
 
 const inputClass =
@@ -52,6 +53,28 @@ export function ResourceForm() {
         placeholder="vous@exemple.com"
         className={`mt-2 ${inputClass}`}
       />
+      <label className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-greige">
+        <input
+          type="checkbox"
+          name="consentement"
+          required
+          className="mt-0.5 h-4 w-4 shrink-0 rounded border-prune/30 text-prune focus:ring-gold/40"
+        />
+        <span>
+          En vous inscrivant, vous acceptez de recevoir votre ressource et,
+          occasionnellement, des conseils et nouvelles de Narrea Studio. Vous
+          pouvez vous désinscrire à tout moment via le lien présent dans chaque
+          courriel. Voir la{" "}
+          <Link
+            href="/confidentialite"
+            className="underline transition-colors hover:text-prune"
+          >
+            Politique de confidentialité
+          </Link>
+          .
+        </span>
+      </label>
+
       {error ? <p className="mt-3 text-sm text-red-600">{error}</p> : null}
       <button
         type="submit"
@@ -60,10 +83,6 @@ export function ResourceForm() {
       >
         {isPending ? "Envoi…" : "Recevoir la ressource"}
       </button>
-      <p className="mt-3 text-xs leading-relaxed text-greige">
-        Vous recevez le guide et rejoignez ma liste email. Pas de spam,
-        désinscription en un clic.
-      </p>
     </form>
   );
 }
