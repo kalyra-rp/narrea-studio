@@ -94,9 +94,8 @@ export const services: Offer[] = [
         "L'analyse de vos visuels actuels (si vous en avez)",
         "Les points de blocage identifiés + des recommandations concrètes",
         "Une checklist d'actions priorisée",
-        "Format : une vidéo explicative (20-30 min) + un document de synthèse",
+        "Format : un document PDF de synthèse, soigné et complet",
       ],
-      option: "Appel de débrief 30 min — +50 €",
     },
     howItWorks: [
       "Vous remplissez un court questionnaire",
