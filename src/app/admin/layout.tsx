@@ -14,8 +14,10 @@ const adminNav = [
   { label: "Vue d'ensemble", href: "/admin" },
   { label: "Articles", href: "/admin/articles" },
   { label: "Produits", href: "/admin/produits" },
+  { label: "Services", href: "/admin/services" },
   { label: "Clients", href: "/admin/clients" },
   { label: "Projets", href: "/admin/projets" },
+  { label: "Abonnés", href: "/admin/abonnes" },
 ];
 
 export default async function AdminLayout({

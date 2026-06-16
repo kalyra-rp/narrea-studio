@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { OfferFormulas } from "@/components/services/OfferFormulas";
-import { getOffer, services } from "@/lib/site";
+import { services } from "@/lib/site";
+import { getMergedOffer } from "@/lib/services-content";
 
 type Params = { slug: string };
 
@@ -18,7 +19,7 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const offer = getOffer(slug);
+  const offer = await getMergedOffer(slug);
   if (!offer) return { title: "Offre introuvable" };
   return {
     title: offer.title,
@@ -32,7 +33,7 @@ export default async function OfferPage({
   params: Promise<Params>;
 }) {
   const { slug } = await params;
-  const offer = getOffer(slug);
+  const offer = await getMergedOffer(slug);
   if (!offer) notFound();
 
   return (

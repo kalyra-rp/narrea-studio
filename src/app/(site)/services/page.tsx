@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { services } from "@/lib/site";
+import { getMergedServices } from "@/lib/services-content";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -10,7 +10,10 @@ export const metadata: Metadata = {
     "Le catalogue des offres Narrea Studio : Audit Clarté, Kit Présence Pro, Lancement Signature, Studio Mensuel et Serveur Discord pro.",
 };
 
-export default function ServicesPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ServicesPage() {
+  const services = await getMergedServices();
   return (
     <>
       <PageHeader

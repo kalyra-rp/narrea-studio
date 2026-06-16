@@ -101,6 +101,26 @@ export async function getProjectAdmin(id: string): Promise<{
   };
 }
 
+export type Subscriber = {
+  id: string;
+  email: string;
+  source: string | null;
+  created_at: string;
+};
+
+export async function getSubscribersAdmin(): Promise<Subscriber[]> {
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from("subscribers")
+    .select("*")
+    .order("created_at", { ascending: false });
+  if (error) {
+    console.error("getSubscribersAdmin :", error.message);
+    return [];
+  }
+  return (data as Subscriber[]) ?? [];
+}
+
 // URL signée (bucket privé) pour télécharger un livrable fichier — admin.
 export async function signedDeliverableUrl(
   path: string,
