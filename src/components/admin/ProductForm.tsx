@@ -27,6 +27,7 @@ export function ProductForm({ product }: { product?: Product }) {
   const [image, setImage] = useState(product?.image ?? "");
   const [categorie, setCategorie] = useState(product?.categorie ?? "");
   const [tags, setTags] = useState((product?.tags ?? []).join(", "));
+  const [inclus, setInclus] = useState((product?.inclus ?? []).join("\n"));
   const [payhip, setPayhip] = useState(product?.payhip_url ?? "");
   const [statut, setStatut] = useState<"brouillon" | "publie">(
     product?.statut ?? "brouillon",
@@ -67,6 +68,7 @@ export function ProductForm({ product }: { product?: Product }) {
       image,
       categorie,
       tags,
+      inclus,
       payhip_url: payhip,
       statut: target ?? statut,
     };
@@ -172,6 +174,20 @@ export function ProductForm({ product }: { product?: Product }) {
             onChange={(e) => setTags(e.target.value)}
             placeholder="modèle, canva, présence"
             className={field}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="inclus" className={label}>
+            Ce qui est inclus (une ligne par élément)
+          </label>
+          <textarea
+            id="inclus"
+            value={inclus}
+            onChange={(e) => setInclus(e.target.value)}
+            rows={4}
+            placeholder={"Un modèle Canva\nUn guide d'utilisation\nLes polices recommandées"}
+            className={`${field} resize-y`}
           />
         </div>
 

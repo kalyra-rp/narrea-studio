@@ -12,6 +12,7 @@ export type ProductInput = {
   image: string;
   categorie: string;
   tags: string; // saisis séparés par des virgules
+  inclus: string; // une ligne par élément
   payhip_url: string;
   statut: "brouillon" | "publie";
 };
@@ -40,6 +41,10 @@ function normalize(values: ProductInput) {
     .split(",")
     .map((t) => t.trim())
     .filter(Boolean);
+  const inclus = values.inclus
+    .split("\n")
+    .map((t) => t.trim())
+    .filter(Boolean);
   return {
     nom,
     slug,
@@ -48,6 +53,7 @@ function normalize(values: ProductInput) {
     image: values.image.trim() || null,
     categorie: values.categorie.trim() || null,
     tags,
+    inclus,
     payhip_url: values.payhip_url.trim() || null,
     statut: values.statut,
   };
