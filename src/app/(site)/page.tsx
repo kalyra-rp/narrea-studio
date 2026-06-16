@@ -150,7 +150,7 @@ export default function Home() {
         <Container className="py-20 text-center sm:py-28">
           <p className="font-script text-2xl text-gold">On commence ?</p>
           <h2 className="mx-auto mt-3 max-w-2xl font-serif text-3xl font-semibold leading-snug text-ivory sm:text-4xl">
-            Prête à clarifier votre offre et structurer votre présence ?
+            Envie de clarifier votre offre et de structurer votre présence ?
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-champagne/85 sm:text-lg">
             Commencez par un Audit Clarté, ou écrivez-moi simplement pour me parler
@@ -158,7 +158,7 @@ export default function Home() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
             <Link
-              href="/services#audit-clarte"
+              href="/services/audit-clarte"
               className="inline-flex w-full justify-center rounded-full bg-gold px-7 py-3 text-sm font-semibold text-prune-deep transition-colors hover:bg-gold-dark sm:w-auto"
             >
               Réserver un Audit Clarté

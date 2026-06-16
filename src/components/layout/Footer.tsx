@@ -26,20 +26,12 @@ export function Footer() {
           </nav>
 
           <div className="flex flex-col gap-2 text-sm">
-            <p className="font-medium text-ivory">Retrouvez-moi</p>
+            <p className="font-medium text-ivory">Me contacter</p>
             <a
               href={`mailto:${socials.email}`}
               className="text-champagne/80 transition-colors hover:text-gold"
             >
-              Email
-            </a>
-            <a
-              href={socials.comeup}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-champagne/80 transition-colors hover:text-gold"
-            >
-              ComeUp
+              {socials.email}
             </a>
           </div>
         </div>

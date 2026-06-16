@@ -2,104 +2,48 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { services, socials } from "@/lib/site";
+import { services } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Audit Clarté, Kit Présence Pro, Lancement Signature, Studio Mensuel et le Discord : les façons de travailler avec Narrea Studio.",
+    "Le catalogue des offres Narrea Studio : Audit Clarté, Kit Présence Pro, Lancement Signature, Studio Mensuel et Serveur Discord pro.",
 };
 
 export default function ServicesPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Les offres"
+        eyebrow="Le catalogue"
         title="Travaillons ensemble, à votre rythme"
         intro="De la mise au clair de votre offre à un accompagnement continu : choisissez le format adapté à là où vous en êtes."
       />
 
       <section>
         <Container className="py-20 sm:py-24">
-          <div className="flex flex-col gap-16 sm:gap-20">
-            {services.map((offer, index) => (
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {services.map((offer) => (
               <article
                 key={offer.slug}
-                id={offer.slug}
-                className="scroll-mt-28 grid items-center gap-8 md:grid-cols-2 md:gap-12"
+                className="flex flex-col rounded-2xl border rule-gold bg-ivory p-8 transition-colors hover:border-gold"
               >
-                {/* Texte */}
-                <div className={index % 2 === 1 ? "md:order-2" : undefined}>
-                  <p className="font-script text-xl text-gold-dark">
-                    {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <h2 className="mt-1 font-serif text-3xl font-semibold text-prune sm:text-4xl">
-                    {offer.title}
-                  </h2>
-                  <p className="mt-4 text-base leading-relaxed text-ink/80 sm:text-lg">
-                    {offer.promise}
-                  </p>
-                  <p className="mt-4 text-sm font-medium text-greige">
-                    {offer.forWhom}
-                  </p>
-                  <p className="mt-5 font-serif text-xl font-semibold text-prune">
-                    {offer.price}
-                  </p>
-                  <Link
-                    href={offer.cta.href}
-                    className="mt-6 inline-flex rounded-full bg-prune px-6 py-3 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep"
-                  >
-                    {offer.cta.label}
-                  </Link>
-                </div>
-
-                {/* Ce qui est inclus */}
-                <div
-                  className={`rounded-3xl border rule-gold bg-champagne/30 p-8 sm:p-10 ${
-                    index % 2 === 1 ? "md:order-1" : ""
-                  }`}
+                <h2 className="font-serif text-2xl font-semibold text-prune">
+                  {offer.title}
+                </h2>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-greige">
+                  {offer.tagline}
+                </p>
+                <p className="mt-5 font-serif text-lg font-semibold text-prune">
+                  {offer.priceFrom}
+                </p>
+                <Link
+                  href={`/services/${offer.slug}`}
+                  className="mt-6 inline-flex w-fit rounded-full bg-prune px-5 py-2.5 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep"
                 >
-                  <p className="font-serif text-lg font-semibold text-prune">
-                    {offer.includesLabel ?? "Ce qui est inclus"}
-                  </p>
-                  <ul className="mt-5 flex flex-col gap-3">
-                    {offer.includes.map((item) => (
-                      <li key={item} className="flex gap-3 text-sm text-ink/80">
-                        <span aria-hidden="true" className="mt-1 text-gold-dark">
-                          ✦
-                        </span>
-                        <span className="leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  Découvrir
+                </Link>
               </article>
             ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Prestations cadrées — ComeUp */}
-      <section className="bg-champagne/40">
-        <Container className="py-16 sm:py-20">
-          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-3xl border rule-gold bg-ivory p-10 text-center sm:p-14">
-            <h2 className="font-serif text-3xl font-semibold text-prune sm:text-4xl">
-              Vous préférez une prestation prête à commander ?
-            </h2>
-            <p className="max-w-2xl text-base leading-relaxed text-ink/80">
-              Pour les besoins précis et à périmètre fixe — clarifier votre offre,
-              rédiger votre bio, créer vos visuels, monter votre Discord —
-              retrouvez mes services directement sur ComeUp. Commande en quelques
-              clics, sans rendez-vous.
-            </p>
-            <a
-              href={socials.comeup}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex rounded-full bg-prune px-7 py-3 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep"
-            >
-              Voir mes services sur ComeUp
-            </a>
           </div>
         </Container>
       </section>
@@ -107,7 +51,7 @@ export default function ServicesPage() {
       {/* CTA final */}
       <section className="bg-prune text-ivory">
         <Container className="py-20 text-center sm:py-24">
-          <p className="font-script text-2xl text-gold">Pas sûre du bon format ?</p>
+          <p className="font-script text-2xl text-gold">Pas sûr du bon format ?</p>
           <h2 className="mx-auto mt-3 max-w-2xl font-serif text-3xl font-semibold leading-snug text-ivory sm:text-4xl">
             Parlons-en, et trouvons ce qui vous convient
           </h2>

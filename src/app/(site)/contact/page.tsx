@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { socials } from "@/lib/site";
+import { services, socials } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -12,7 +12,15 @@ export const metadata: Metadata = {
 const inputClass =
   "mt-2 w-full rounded-xl border border-prune/20 bg-ivory px-4 py-3 text-sm text-ink placeholder:text-greige/60 focus:border-prune focus:outline-none focus:ring-2 focus:ring-gold/40";
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ sujet?: string }>;
+}) {
+  const { sujet } = await searchParams;
+  // Pré-sélection du sujet depuis l'URL (?sujet=slug), sinon « autre ».
+  const selectedSujet = services.some((o) => o.slug === sujet) ? sujet : "autre";
+
   return (
     <>
       <PageHeader
@@ -41,19 +49,6 @@ export default function ContactPage() {
                       className="underline transition-colors hover:text-prune"
                     >
                       {socials.email}
-                    </a>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="font-medium text-prune">ComeUp</dt>
-                  <dd className="mt-1 text-greige">
-                    <a
-                      href={socials.comeup}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline transition-colors hover:text-prune"
-                    >
-                      Mes services prêts à commander
                     </a>
                   </dd>
                 </div>
@@ -94,16 +89,22 @@ export default function ContactPage() {
               </div>
 
               <div className="mt-5">
-                <label htmlFor="subject" className="text-sm font-medium text-prune">
-                  Sujet
+                <label htmlFor="sujet" className="text-sm font-medium text-prune">
+                  Quel sujet ?
                 </label>
-                <input
-                  id="subject"
-                  name="subject"
-                  type="text"
-                  placeholder="L'objet de votre message"
+                <select
+                  id="sujet"
+                  name="sujet"
+                  defaultValue={selectedSujet}
                   className={inputClass}
-                />
+                >
+                  {services.map((offer) => (
+                    <option key={offer.slug} value={offer.slug}>
+                      {offer.title}
+                    </option>
+                  ))}
+                  <option value="autre">Autre / question</option>
+                </select>
               </div>
 
               <div className="mt-5">
