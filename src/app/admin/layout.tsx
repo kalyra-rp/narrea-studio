@@ -31,40 +31,44 @@ export default async function AdminLayout({
   return (
     <div className="flex min-h-full flex-1 flex-col bg-white">
       <header className="border-b border-prune/10 bg-prune-deep text-ivory">
-        <Container className="flex h-16 items-center justify-between">
-          <div className="flex items-center gap-8">
-            <Link href="/admin" className="font-serif text-lg font-semibold">
-              Narrea · Admin
-            </Link>
-            <nav className="flex items-center gap-6 text-sm">
-              {adminNav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-ivory/80 transition-colors hover:text-gold"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-          <div className="flex items-center gap-5 text-sm">
+        <Container className="flex h-16 items-center justify-between gap-3">
+          <Link
+            href="/admin"
+            className="shrink-0 font-serif text-lg font-semibold"
+          >
+            Narrea · Admin
+          </Link>
+          <div className="flex items-center gap-4 text-sm">
             <Link
               href="/"
-              className="text-ivory/70 transition-colors hover:text-gold"
+              className="hidden text-ivory/70 transition-colors hover:text-gold sm:inline"
             >
               ← Voir le site
             </Link>
-            <span className="hidden text-ivory/50 sm:inline">{user.email}</span>
+            <span className="hidden text-ivory/50 lg:inline">{user.email}</span>
             <form action={signOut}>
               <button
                 type="submit"
-                className="rounded-full border border-ivory/30 px-3 py-1.5 text-ivory/80 transition-colors hover:border-gold hover:text-gold"
+                className="shrink-0 rounded-full border border-ivory/30 px-3 py-1.5 text-ivory/80 transition-colors hover:border-gold hover:text-gold"
               >
                 Déconnexion
               </button>
             </form>
           </div>
+        </Container>
+        {/* Onglets : défilables horizontalement sur mobile */}
+        <Container className="-mb-px">
+          <nav className="flex gap-5 overflow-x-auto whitespace-nowrap pb-px text-sm">
+            {adminNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="border-b-2 border-transparent py-3 text-ivory/80 transition-colors hover:border-gold/60 hover:text-gold"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
         </Container>
       </header>
       <div className="flex-1">{children}</div>

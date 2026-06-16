@@ -25,18 +25,18 @@ export default async function EspaceLayout({
             className="flex items-center gap-3"
             aria-label="Mon espace Narrea Studio"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-gold font-serif text-base font-semibold text-prune">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-gold font-serif text-base font-semibold text-prune">
               N
             </span>
-            <span className="font-serif text-lg font-semibold text-prune">
+            <span className="hidden font-serif text-lg font-semibold text-prune sm:inline">
               Mon espace
             </span>
           </Link>
 
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-3 text-sm sm:gap-4">
             <Link
               href="/espace/mot-de-passe"
-              className="hidden text-greige transition-colors hover:text-prune sm:inline"
+              className="text-greige transition-colors hover:text-prune"
             >
               Mot de passe
             </Link>
@@ -49,7 +49,7 @@ export default async function EspaceLayout({
             <form action={signOut}>
               <button
                 type="submit"
-                className="rounded-full border border-prune/20 px-3 py-1.5 font-medium text-prune transition-colors hover:bg-prune/5"
+                className="shrink-0 rounded-full border border-prune/20 px-3 py-1.5 font-medium text-prune transition-colors hover:bg-prune/5"
               >
                 Déconnexion
               </button>

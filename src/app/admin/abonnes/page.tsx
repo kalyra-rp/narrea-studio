@@ -25,8 +25,8 @@ export default async function AdminAbonnesPage() {
           Aucun abonné pour l&apos;instant.
         </p>
       ) : (
-        <div className="mt-8 overflow-hidden rounded-2xl border border-prune/10">
-          <table className="w-full text-left text-sm">
+        <div className="mt-8 overflow-x-auto rounded-2xl border border-prune/10">
+          <table className="w-full min-w-[36rem] text-left text-sm">
             <thead className="bg-champagne/40 text-prune">
               <tr>
                 <th className="px-5 py-3 font-medium">Email</th>

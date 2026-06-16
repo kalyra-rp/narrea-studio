@@ -31,8 +31,8 @@ export default async function AdminArticlesPage() {
           Aucun article pour l&apos;instant. Créez le premier.
         </p>
       ) : (
-        <div className="mt-8 overflow-hidden rounded-2xl border border-prune/10">
-          <table className="w-full text-left text-sm">
+        <div className="mt-8 overflow-x-auto rounded-2xl border border-prune/10">
+          <table className="w-full min-w-[40rem] text-left text-sm">
             <thead className="bg-champagne/40 text-prune">
               <tr>
                 <th className="px-5 py-3 font-medium">Titre</th>
