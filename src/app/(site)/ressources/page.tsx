@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { ResourceForm } from "@/components/forms/ResourceForm";
 
 export const metadata: Metadata = {
   title: "Ressources",
@@ -13,9 +14,6 @@ const benefits = [
   "Identifier ce qui bloque dans votre présence en ligne",
   "Savoir par quoi commencer, concrètement",
 ];
-
-const inputClass =
-  "w-full rounded-xl border border-prune/20 bg-ivory px-4 py-3 text-sm text-ink placeholder:text-greige/60 focus:border-prune focus:outline-none focus:ring-2 focus:ring-gold/40";
 
 export default function RessourcesPage() {
   return (
@@ -45,34 +43,8 @@ export default function RessourcesPage() {
               </ul>
             </div>
 
-            {/* Inscription (branchement MailerLite à l'étape 6) */}
-            <form className="rounded-2xl bg-ivory p-6 sm:p-8">
-              <label
-                htmlFor="email"
-                className="text-sm font-medium text-prune"
-              >
-                Votre email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                placeholder="vous@exemple.com"
-                className={`mt-2 ${inputClass}`}
-              />
-              <button
-                type="submit"
-                className="mt-4 inline-flex w-full justify-center rounded-full bg-prune px-7 py-3 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep"
-              >
-                Recevoir la ressource
-              </button>
-              <p className="mt-3 text-xs leading-relaxed text-greige">
-                Vous recevez le guide et rejoignez ma liste email. Pas de spam,
-                désinscription en un clic. Inscription activée prochainement.
-              </p>
-            </form>
+            {/* Inscription (Supabase subscribers + emails via Resend) */}
+            <ResourceForm />
           </div>
         </Container>
       </section>

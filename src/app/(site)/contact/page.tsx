@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { ContactForm } from "@/components/forms/ContactForm";
 import { services, socials } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -9,9 +10,6 @@ export const metadata: Metadata = {
     "Parlez-moi de votre projet. Narrea Studio vous répond rapidement pour clarifier votre offre et structurer votre présence.",
 };
 
-const inputClass =
-  "mt-2 w-full rounded-xl border border-prune/20 bg-ivory px-4 py-3 text-sm text-ink placeholder:text-greige/60 focus:border-prune focus:outline-none focus:ring-2 focus:ring-gold/40";
-
 export default async function ContactPage({
   searchParams,
 }: {
@@ -19,7 +17,7 @@ export default async function ContactPage({
 }) {
   const { sujet } = await searchParams;
   // Pré-sélection du sujet depuis l'URL (?sujet=slug), sinon « autre ».
-  const selectedSujet = services.some((o) => o.slug === sujet) ? sujet : "autre";
+  const selectedSujet = services.some((o) => o.slug === sujet) ? sujet! : "autre";
 
   return (
     <>
@@ -55,82 +53,8 @@ export default async function ContactPage({
               </dl>
             </div>
 
-            {/* Formulaire (branchement Resend à l'étape 6) */}
-            <form className="rounded-3xl border rule-gold bg-champagne/30 p-8 sm:p-10">
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="name" className="text-sm font-medium text-prune">
-                    Nom
-                  </label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    autoComplete="name"
-                    placeholder="Votre nom"
-                    className={inputClass}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="text-sm font-medium text-prune">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    autoComplete="email"
-                    placeholder="vous@exemple.com"
-                    className={inputClass}
-                  />
-                </div>
-              </div>
-
-              <div className="mt-5">
-                <label htmlFor="sujet" className="text-sm font-medium text-prune">
-                  Quel sujet ?
-                </label>
-                <select
-                  id="sujet"
-                  name="sujet"
-                  defaultValue={selectedSujet}
-                  className={inputClass}
-                >
-                  {services.map((offer) => (
-                    <option key={offer.slug} value={offer.slug}>
-                      {offer.title}
-                    </option>
-                  ))}
-                  <option value="autre">Autre / question</option>
-                </select>
-              </div>
-
-              <div className="mt-5">
-                <label htmlFor="message" className="text-sm font-medium text-prune">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={5}
-                  placeholder="Parlez-moi de votre projet…"
-                  className={`${inputClass} resize-y`}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="mt-6 inline-flex w-full justify-center rounded-full bg-prune px-7 py-3 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep sm:w-auto"
-              >
-                Envoyer le message
-              </button>
-              <p className="mt-3 text-xs text-greige">
-                L&apos;envoi sera activé prochainement (intégration en cours).
-              </p>
-            </form>
+            {/* Formulaire (envoi via Resend) */}
+            <ContactForm initialSujet={selectedSujet} />
           </div>
         </Container>
       </section>
