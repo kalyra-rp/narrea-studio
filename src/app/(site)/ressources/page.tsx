@@ -23,7 +23,7 @@ export default function RessourcesPage() {
       <PageHeader
         eyebrow="Gratuit"
         title="Votre ressource pour y voir clair"
-        intro="Un guide offert pour clarifier votre offre et structurer votre présence — à recevoir directement par email."
+        intro="Un guide offert pour clarifier votre offre et structurer votre présence. En le recevant, vous rejoignez aussi ma liste email : quelques conseils utiles, de temps en temps."
       />
 
       <section>
@@ -69,8 +69,8 @@ export default function RessourcesPage() {
                 Recevoir la ressource
               </button>
               <p className="mt-3 text-xs leading-relaxed text-greige">
-                Pas de spam. Désinscription en un clic. L&apos;inscription sera
-                activée prochainement.
+                Vous recevez le guide et rejoignez ma liste email. Pas de spam,
+                désinscription en un clic. Inscription activée prochainement.
               </p>
             </form>
           </div>

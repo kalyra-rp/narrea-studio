@@ -240,39 +240,27 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* ──────────────────── 8. Newsletter ──────────────────── */}
+      {/* ──────────────────── 8. Ressource gratuite ──────────────────── */}
       <section className="bg-champagne/40">
         <Container className="py-24 text-center sm:py-28">
           <Reveal>
-            <p className={eyebrow}>La newsletter</p>
+            <p className={eyebrow}>Gratuit</p>
             <h2 className={`mx-auto mt-4 max-w-xl ${sectionTitle}`}>
-              Des idées claires, dans votre boîte mail
+              Votre guide pour y voir clair
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-greige">
-              Quelques conseils concrets pour clarifier votre offre et structurer
-              votre présence. Sans spam, désinscription en un clic.
+              Un guide PDF offert pour clarifier votre offre et structurer votre
+              présence — et quelques conseils ensuite, par email. Sans spam,
+              désinscription en un clic.
             </p>
-
-            {/* Branché plus tard sur MailerLite (étape 6), comme /ressources. */}
-            <form className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
-              <input
-                type="email"
-                required
-                autoComplete="email"
-                placeholder="vous@exemple.com"
-                aria-label="Votre email"
-                className="w-full rounded-full border border-prune/20 bg-ivory px-5 py-3 text-sm text-ink placeholder:text-greige/60 focus:border-prune focus:outline-none focus:ring-2 focus:ring-gold/40"
-              />
-              <button
-                type="submit"
-                className="shrink-0 rounded-full bg-prune px-6 py-3 text-sm font-medium text-ivory transition-all hover:-translate-y-0.5 hover:bg-prune-deep motion-reduce:hover:translate-y-0"
+            <div className="mt-8">
+              <Link
+                href="/ressources"
+                className="inline-flex rounded-full bg-prune px-7 py-3 text-sm font-medium text-ivory shadow-sm transition-all hover:-translate-y-0.5 hover:bg-prune-deep hover:shadow-md motion-reduce:hover:translate-y-0"
               >
-                S&apos;inscrire
-              </button>
-            </form>
-            <p className="mt-3 text-xs text-greige">
-              Inscription activée prochainement.
-            </p>
+                Recevoir la ressource
+              </Link>
+            </div>
           </Reveal>
         </Container>
       </section>
