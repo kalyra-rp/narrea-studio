@@ -6,7 +6,9 @@ import { createBrowserSupabase } from "@/lib/supabase/client";
 
 export function LoginForm() {
   const searchParams = useSearchParams();
-  const accesRefuse = searchParams.get("erreur") === "acces-refuse";
+  const erreur = searchParams.get("erreur");
+  const accesRefuse = erreur === "acces-refuse";
+  const lienInvalide = erreur === "lien-invalide";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,6 +61,12 @@ export function LoginForm() {
       {accesRefuse ? (
         <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
           Accès réservé. Connectez-vous avec un compte autorisé.
+        </p>
+      ) : null}
+      {lienInvalide ? (
+        <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          Le lien d&apos;invitation est invalide ou a expiré. Demandez un nouveau
+          lien.
         </p>
       ) : null}
 

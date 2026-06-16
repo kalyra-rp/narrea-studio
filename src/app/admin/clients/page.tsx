@@ -44,11 +44,6 @@ export default async function AdminClientsPage() {
                   </td>
                   <td className="px-5 py-4 text-greige">
                     {c.contact_email ?? c.profiles?.email ?? "—"}
-                    {c.profiles?.must_change_password ? (
-                      <span className="ml-2 inline-flex rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-700">
-                        mdp à changer
-                      </span>
-                    ) : null}
                   </td>
                   <td className="px-5 py-4 text-greige">
                     {formatDateFr(c.created_at)}

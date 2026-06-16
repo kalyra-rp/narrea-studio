@@ -7,7 +7,6 @@ import { CONTACT_EMAIL, FROM_EMAIL, getResend } from "@/lib/resend";
 
 export type CreateClientValues = {
   email: string;
-  password: string;
   entreprise: string;
   contactNom: string;
   infos: string;
@@ -20,7 +19,8 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 async function siteOrigin(): Promise<string> {
   const h = await headers();
   const host = h.get("host") ?? "localhost:3000";
-  const proto = h.get("x-forwarded-proto") ?? (host.includes("localhost") ? "http" : "https");
+  const proto =
+    h.get("x-forwarded-proto") ?? (host.includes("localhost") ? "http" : "https");
   return `${proto}://${host}`;
 }
 
@@ -28,7 +28,6 @@ export async function createClientAccount(
   values: CreateClientValues,
 ): Promise<ActionResult> {
   const email = values.email?.trim().toLowerCase();
-  const password = values.password ?? "";
   const contactNom = values.contactNom?.trim() || null;
   const entreprise = values.entreprise?.trim() || null;
   const infos = values.infos?.trim() || null;
@@ -36,34 +35,26 @@ export async function createClientAccount(
   if (!email || !EMAIL_RE.test(email)) {
     return { error: "Email invalide." };
   }
-  if (password.length < 8) {
-    return { error: "Le mot de passe temporaire doit faire au moins 8 caractères." };
-  }
 
   const supabase = createAdminClient();
 
-  // 1) Création du compte Auth (confirmé d'emblée → connexion immédiate).
-  const { data: created, error: createErr } = await supabase.auth.admin.createUser({
+  // 1) Génère un lien d'invitation sécurisé (crée le compte, sans mot de passe).
+  const { data: link, error: linkErr } = await supabase.auth.admin.generateLink({
+    type: "invite",
     email,
-    password,
-    email_confirm: true,
   });
-  if (createErr || !created.user) {
-    const msg = /already|exist/i.test(createErr?.message ?? "")
+  if (linkErr || !link.user || !link.properties?.hashed_token) {
+    const msg = /already|exist|registered/i.test(linkErr?.message ?? "")
       ? "Un compte existe déjà avec cet email."
-      : (createErr?.message ?? "Création du compte impossible.");
+      : (linkErr?.message ?? "Impossible de générer l'invitation.");
     return { error: msg };
   }
-  const userId = created.user.id;
+  const userId = link.user.id;
 
-  // 2) Profil : rôle client + doit changer son mot de passe.
-  // Upsert (robuste si le trigger n'a pas encore inséré la ligne).
+  // 2) Profil : rôle client.
   const { error: profErr } = await supabase
     .from("profiles")
-    .upsert(
-      { id: userId, role: "client", must_change_password: true, nom: contactNom, email },
-      { onConflict: "id" },
-    );
+    .upsert({ id: userId, role: "client", nom: contactNom, email }, { onConflict: "id" });
   if (profErr) {
     return { error: `Compte créé mais profil non mis à jour : ${profErr.message}` };
   }
@@ -80,23 +71,27 @@ export async function createClientAccount(
     return { error: `Compte créé mais fiche client non créée : ${clientErr.message}` };
   }
 
-  // 4) Email « votre accès est prêt » (sans le mot de passe en clair).
+  // 4) Email d'invitation (dans la DA) avec le lien d'activation sécurisé.
+  // On reconstruit le lien vers notre route /auth/confirm (verifyOtp côté serveur).
+  const origin = await siteOrigin();
+  const activationUrl = `${origin}/auth/confirm?token_hash=${link.properties.hashed_token}&type=invite&next=/bienvenue`;
+
   try {
-    const origin = await siteOrigin();
     const resend = getResend();
     await resend.emails.send({
       from: FROM_EMAIL,
       to: email,
-      subject: "Votre accès à l'espace client Narrea Studio",
+      subject: "Votre espace Narrea Studio est prêt",
       text: [
         `Bonjour${contactNom ? ` ${contactNom}` : ""},`,
         "",
-        "Votre espace client Narrea Studio est prêt.",
+        "Votre espace client Narrea Studio est prêt !",
         "",
-        `Connectez-vous ici : ${origin}/connexion`,
+        "Cliquez sur le lien ci-dessous pour l'activer et choisir votre mot de passe :",
+        activationUrl,
         "",
-        "Votre mot de passe temporaire vous est transmis séparément.",
-        "À la première connexion, il vous sera demandé de le changer.",
+        "Ce lien est personnel et expire après quelques heures.",
+        "S'il a expiré, demandez-moi simplement un nouveau lien.",
         "",
         "À très vite,",
         "Christelle — Narrea Studio",
@@ -106,11 +101,14 @@ export async function createClientAccount(
       from: FROM_EMAIL,
       to: CONTACT_EMAIL,
       subject: "Compte client créé",
-      text: `Nouveau client : ${email}${entreprise ? ` (${entreprise})` : ""}`,
+      text: `Invitation envoyée à : ${email}${entreprise ? ` (${entreprise})` : ""}`,
     });
   } catch (e) {
-    console.error("Resend (création client) :", e);
-    // Le compte est créé : on ne bloque pas si l'email échoue.
+    console.error("Resend (invitation client) :", e);
+    return {
+      error:
+        "Compte créé mais l'email d'invitation n'a pas pu partir. Réessayez d'envoyer l'invitation.",
+    };
   }
 
   revalidatePath("/admin/clients");

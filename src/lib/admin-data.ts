@@ -8,7 +8,7 @@ import type {
 } from "@/lib/client-space";
 
 export type ClientWithMeta = Client & {
-  profiles: { email: string | null; must_change_password: boolean } | null;
+  profiles: { email: string | null } | null;
 };
 
 export type ProjectWithClient = Project & {
@@ -23,7 +23,7 @@ export async function getClientsAdmin(): Promise<ClientWithMeta[]> {
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("clients")
-    .select("*, profiles(email, must_change_password)")
+    .select("*, profiles(email)")
     .order("created_at", { ascending: false });
   if (error) {
     console.error("getClientsAdmin :", error.message);
@@ -38,7 +38,7 @@ export async function getClientAdmin(
   const supabase = createAdminClient();
   const { data: client, error } = await supabase
     .from("clients")
-    .select("*, profiles(email, must_change_password)")
+    .select("*, profiles(email)")
     .eq("id", id)
     .maybeSingle();
   if (error || !client) return null;

@@ -20,7 +20,6 @@ export function CreateClientForm() {
     const data = new FormData(e.currentTarget);
     const values = {
       email: String(data.get("email") ?? ""),
-      password: String(data.get("password") ?? ""),
       entreprise: String(data.get("entreprise") ?? ""),
       contactNom: String(data.get("contactNom") ?? ""),
       infos: String(data.get("infos") ?? ""),
@@ -60,26 +59,12 @@ export function CreateClientForm() {
           <input id="email" name="email" type="email" required className={field} />
         </div>
         <div>
-          <label htmlFor="password" className={label}>
-            Mot de passe temporaire
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="text"
-            required
-            minLength={8}
-            placeholder="8 caractères minimum"
-            className={field}
-          />
-        </div>
-        <div>
           <label htmlFor="contactNom" className={label}>
             Nom du contact
           </label>
           <input id="contactNom" name="contactNom" type="text" className={field} />
         </div>
-        <div>
+        <div className="sm:col-span-2">
           <label htmlFor="entreprise" className={label}>
             Entreprise
           </label>
@@ -101,7 +86,7 @@ export function CreateClientForm() {
           disabled={isPending}
           className="inline-flex rounded-full bg-prune px-5 py-2.5 text-sm font-medium text-ivory transition-colors hover:bg-prune-deep disabled:opacity-60"
         >
-          {isPending ? "Création…" : "Créer le compte"}
+          {isPending ? "Envoi de l'invitation…" : "Envoyer l'invitation"}
         </button>
         <button
           type="button"
@@ -112,8 +97,8 @@ export function CreateClientForm() {
         </button>
       </div>
       <p className="mt-3 text-xs text-greige">
-        Le client reçoit un email avec le lien de connexion. Transmettez-lui le mot
-        de passe temporaire par un autre canal.
+        Le client reçoit un email avec un lien sécurisé pour activer son espace et
+        choisir lui-même son mot de passe. Aucun mot de passe à transmettre.
       </p>
     </form>
   );
