@@ -13,6 +13,8 @@ export const metadata: Metadata = {
 const adminNav = [
   { label: "Vue d'ensemble", href: "/admin" },
   { label: "Articles", href: "/admin/articles" },
+  { label: "Clients", href: "/admin/clients" },
+  { label: "Projets", href: "/admin/projets" },
 ];
 
 export default async function AdminLayout({
