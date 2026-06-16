@@ -190,7 +190,7 @@ export default function Home() {
           <Reveal>
             <p className={eyebrow}>Pour qui c&apos;est fait</p>
             <h2 className={`mx-auto mt-4 max-w-2xl ${sectionTitle}`}>
-              Pensé pour celles et ceux qui font
+              À qui s&apos;adresse Narrea Studio
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-greige sm:text-lg">
               Indépendants, créateurs et petites structures qui veulent une présence
@@ -218,19 +218,23 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* ─────────────── 7. Boutique (teaser discret) ─────────────── */}
+      {/* ─────────────── 7. Boutique (bloc intermédiaire) ─────────────── */}
       <section>
         <Container className="py-16 sm:py-20">
-          <Reveal className="mx-auto flex max-w-3xl flex-col items-center justify-between gap-4 rounded-2xl border rule-gold bg-ivory px-8 py-6 text-center sm:flex-row sm:text-left">
-            <p className="text-sm leading-relaxed text-greige">
-              <span className="font-medium text-prune">La boutique —</span> modèles,
-              guides et kits numériques prêts à l&apos;emploi.
+          <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-5 rounded-3xl border rule-gold bg-champagne/30 px-8 py-10 text-center sm:px-12 sm:py-12">
+            <p className={eyebrow}>La boutique</p>
+            <h2 className="font-serif text-3xl font-semibold text-prune sm:text-4xl">
+              Des supports prêts à l&apos;emploi
+            </h2>
+            <p className="max-w-xl text-base leading-relaxed text-greige">
+              Modèles, guides et kits numériques pour structurer votre présence
+              sans repartir de zéro — à télécharger et utiliser tout de suite.
             </p>
             <Link
               href="/boutique"
-              className="shrink-0 text-sm font-medium text-prune underline transition-colors hover:text-prune-deep"
+              className="inline-flex rounded-full bg-prune px-6 py-2.5 text-sm font-medium text-ivory shadow-sm transition-all hover:-translate-y-0.5 hover:bg-prune-deep hover:shadow-md motion-reduce:hover:translate-y-0"
             >
-              Découvrir la boutique →
+              Découvrir la boutique
             </Link>
           </Reveal>
         </Container>
