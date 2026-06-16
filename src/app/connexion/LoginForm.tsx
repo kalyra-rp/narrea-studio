@@ -34,12 +34,21 @@ export function LoginForm() {
       return;
     }
 
-    // Redirection selon le rôle.
-    const { data: profile } = await supabase
+    // Redirection selon le rôle (relu depuis la table profiles).
+    const { data: profile, error: profileError } = await supabase
       .from("profiles")
       .select("role")
       .eq("id", data.user.id)
       .maybeSingle();
+
+    if (profileError) {
+      // Ne pas masquer un échec de lecture du rôle (ex. policy RLS cassée).
+      setLoading(false);
+      setError(
+        `Connexion réussie mais impossible de lire votre rôle : ${profileError.message}`,
+      );
+      return;
+    }
 
     const dest = profile?.role === "admin" ? "/admin" : "/espace";
     window.location.assign(dest);
