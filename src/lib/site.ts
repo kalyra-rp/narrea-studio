@@ -91,33 +91,47 @@ export const services: Offer[] = [
     tagline: "Voir clair sur ce qui bloque votre offre.",
     priceFrom: "À partir de 97 €",
     promise:
-      "Je repère ce qui bloque dans votre offre ou votre présence, et je vous dis quoi corriger en priorité.",
+      "Un regard extérieur qui identifie ce qui bloque dans votre offre — et quoi corriger en priorité.",
     forWhom:
       "Vous hésitez à investir dans un accompagnement complet, mais vous voulez un regard professionnel — ou votre offre ne « parle » pas et vous ne savez pas pourquoi.",
     formulas: {
-      kind: "single",
-      price: "97 €",
-      priceNote: "Tarif de lancement, puis 149 €",
-      includes: [
-        "L'analyse de votre offre, de votre bio et de votre page ou profil",
-        "L'analyse de vos visuels actuels (si vous en avez)",
-        "Les points de blocage identifiés + des recommandations concrètes",
-        "Une checklist d'actions priorisée",
-        "Format : un document PDF de synthèse, soigné et complet",
+      kind: "table",
+      tiers: [
+        { name: "Essentiel", price: "97 €" },
+        { name: "Approfondi", price: "149 €", featured: true },
+      ],
+      rows: [
+        { label: "Analyse de votre offre", values: [true, true] },
+        { label: "Analyse de votre bio + page ou profil", values: [true, true] },
+        { label: "Analyse de vos visuels actuels", values: [true, true] },
+        {
+          label: "Points de blocage + recommandations concrètes",
+          values: [true, true],
+        },
+        { label: "Checklist d'actions priorisée", values: [true, true] },
+        { label: "Synthèse PDF soignée", values: [true, true] },
+        { label: "Analyse concurrence / positionnement", values: [false, true] },
+        { label: "Pistes de reformulation rédigées", values: [false, true] },
+        { label: "Échange de débrief", values: [false, true] },
       ],
     },
     howItWorks: [
       "Vous remplissez un court questionnaire",
       "J'analyse et je prépare vos recommandations",
-      "Vous recevez votre vidéo + synthèse, et on échange si besoin",
+      "Vous recevez votre synthèse PDF, et on échange si besoin",
     ],
+    difference: {
+      title: "La différence avec Clarté Pro",
+      text: "L'Audit Clarté identifie ce qui bloque dans votre offre. Clarté Pro va plus loin : on clarifie ET on rédige votre offre finale, prête à publier.",
+    },
   },
   {
     slug: "clarte-pro",
     title: "Clarté Pro",
     tagline: "Votre offre clarifiée et rédigée, prête à publier.",
-    priceFrom: "290 €",
-    promise: "Votre offre clarifiée et rédigée, prête à publier.",
+    priceFrom: "À partir de 290 €",
+    promise:
+      "Votre offre clarifiée, rédigée et prête à publier — du fond jusqu'au texte final.",
     hook: "Vous savez ce que vous valez. Il est temps qu'on le comprenne au premier regard.",
     problem:
       "Vous avez une offre solide, mais elle reste floue dans sa formulation : trop large, trop vague, ou simplement « dans votre tête ». Vous l'expliquez différemment à chaque fois, et vous sentez que ça vous fait perdre des clients. Vous n'avez pas besoin qu'on vous dise quoi corriger — vous avez besoin qu'on le fasse avec vous, jusqu'au texte final.",
@@ -126,25 +140,31 @@ export const services: Offer[] = [
     forWhom:
       "Les indépendants, créateurs et petites structures qui ont une vraie offre, mais peinent à la formuler clairement — et veulent un résultat abouti, pas seulement des pistes.",
     formulas: {
-      kind: "single",
-      price: "290 €",
-      includes: [
-        "Votre promesse formulée en une phrase claire (qui vous aidez, à quoi, comment)",
-        "Votre cible définie précisément (et qui n'en fait pas partie)",
-        "La structure complète de votre offre : ce que vous proposez, ce qui est inclus, le résultat, ce qui vous distingue",
-        "La rédaction finale de votre présentation d'offre, prête à copier-coller",
-        "Le tout livré dans un document soigné, à votre image",
-        "Un échange pour cadrer le travail + une révision incluse",
+      kind: "table",
+      tiers: [
+        { name: "Essentiel", price: "290 €" },
+        { name: "Complet", price: "450 €", featured: true },
+        { name: "Signature", price: "690 €" },
+      ],
+      rows: [
+        { label: "Offre clarifiée + promesse", values: [true, true, true] },
+        { label: "Cible précise définie", values: [true, true, true] },
+        { label: "Structure complète de l'offre", values: [true, true, true] },
+        { label: "Présentation d'offre rédigée", values: [true, true, true] },
+        { label: "Bio courte alignée", values: [false, true, true] },
+        { label: "Déclinaison sur 2 plateformes", values: [false, true, true] },
+        { label: "Page de vente complète rédigée", values: [false, false, true] },
+        { label: "Révisions incluses", values: ["1", "2", "3"] },
       ],
     },
     howItWorks: [
       "Un échange de cadrage pour cerner votre offre et vos objectifs",
       "Je clarifie le fond, puis je rédige votre présentation d'offre",
-      "Vous validez (une révision incluse) et recevez votre document prêt à publier",
+      "Vous validez (révisions incluses) et recevez votre document prêt à publier",
     ],
     difference: {
       title: "La différence avec l'Audit Clarté",
-      text: "L'Audit Clarté identifie ce qui bloque. Clarté Pro résout : on clarifie ET on rédige votre offre finale.",
+      text: "L'Audit Clarté identifie ce qui bloque. Clarté Pro résout : on clarifie ET on rédige votre offre finale, prête à publier.",
     },
   },
   {
@@ -185,25 +205,37 @@ export const services: Offer[] = [
     tagline: "Lancez votre offre avec clarté et confiance.",
     priceFrom: "À partir de 900 €",
     promise:
-      "Toute la communication pour lancer votre offre avec clarté, cohérence et confiance.",
+      "Lancez votre offre avec clarté et confiance — du positionnement jusqu'au dernier email.",
     forWhom:
       "Vous lancez (ou relancez) une offre, une formation, un ebook, un programme, une boutique ou une nouvelle activité.",
     formulas: {
       kind: "table",
       tiers: [
         { name: "Lancement", price: "900 €" },
-        { name: "Lancement +", price: "1 500 €", featured: true },
+        { name: "Signature", price: "1 500 €", featured: true },
+        { name: "Prestige", price: "2 200 €" },
       ],
       rows: [
-        { label: "Stratégie + angle de lancement", values: [true, true] },
-        { label: "Page de vente", values: [true, true] },
-        { label: "Séquence email", values: ["3 emails", "5 emails"] },
-        { label: "Posts de lancement", values: ["12", "15"] },
-        { label: "Visuels", values: [true, true] },
-        { label: "Calendrier de lancement", values: [true, true] },
         {
-          label: "Serveur Discord pro (structure + accueil)",
-          values: [false, true],
+          label: "Offre clarifiée + positionnement",
+          values: [true, true, true],
+        },
+        { label: "Page de vente complète rédigée", values: [true, true, true] },
+        { label: "Structure de prix et d'offre", values: [true, true, true] },
+        {
+          label: "Visuels de lancement coordonnés",
+          values: [true, true, true],
+        },
+        {
+          label: "Séquence d'emails de lancement",
+          values: [false, "3 emails", "5 emails"],
+        },
+        { label: "Plan de contenu de lancement", values: [false, true, true] },
+        { label: "Bio & profils alignés", values: [false, true, true] },
+        { label: "Mini-page / espace dédié", values: [false, false, true] },
+        {
+          label: "Accompagnement pendant le lancement",
+          values: [false, false, true],
         },
       ],
     },
@@ -219,7 +251,7 @@ export const services: Offer[] = [
     tagline: "Une présence régulière, sans vous éparpiller.",
     priceFrom: "À partir de 450 €/mois",
     promise:
-      "Un soutien régulier, mois après mois, pour garder une présence cohérente et professionnelle — sans vous éparpiller.",
+      "Une présence en ligne régulière et soignée, mois après mois — sans vous éparpiller.",
     forWhom:
       "Vous avez déjà une base, et vous voulez avancer dans la durée avec un interlocuteur unique qui connaît votre univers.",
     formulas: {
@@ -227,14 +259,18 @@ export const services: Offer[] = [
       note: "Sans engagement.",
       tiers: [
         { name: "Présence", price: "450 €/mois" },
-        { name: "Présence +", price: "750 €/mois", featured: true },
+        { name: "Croissance", price: "750 €/mois", featured: true },
+        { name: "Signature", price: "1 200 €/mois" },
       ],
       rows: [
-        { label: "Posts + visuels / mois", values: ["8", "12"] },
-        { label: "Newsletter", values: ["1", "2"] },
-        { label: "Visuels promo", values: ["2", "4"] },
-        { label: "Optimisation offre/page", values: ["1", "1"] },
-        { label: "Appel de suivi mensuel", values: ["1", "1"] },
+        { label: "Échange mensuel de cadrage", values: [true, true, true] },
+        { label: "Visuels / contenus par mois", values: ["4", "8", "15"] },
+        { label: "Ligne éditoriale tenue à jour", values: [true, true, true] },
+        { label: "Révisions et ajustements", values: [true, true, true] },
+        { label: "Calendrier de contenu mensuel", values: [false, true, true] },
+        { label: "Rédaction de posts / textes", values: [false, true, true] },
+        { label: "Priorité de traitement", values: [false, false, true] },
+        { label: "Bilan stratégique trimestriel", values: [false, false, true] },
       ],
     },
     howItWorks: [
@@ -246,36 +282,49 @@ export const services: Offer[] = [
   {
     slug: "serveur-discord-pro",
     title: "Serveur Discord pro",
-    tagline: "Un espace communautaire clair, beau et bien rangé.",
+    tagline: "Un serveur clair et structuré, que vous gérez ensuite vous-même.",
     priceFrom: "À partir de 95 €",
     promise:
-      "Je conçois votre serveur Discord — clair, pratique et à votre image. Un espace où chaque membre trouve sa place tout de suite.",
+      "Un espace Discord clair, structuré et esthétique — que vous gérez ensuite en toute autonomie.",
     forWhom:
-      "Une marque, un créateur, une formation ou une équipe qui veut un espace communautaire professionnel et bien rangé.",
+      "Une marque, un créateur, une formation ou une équipe qui veut un serveur Discord professionnel et bien rangé, livré prêt à l'emploi pour le gérer soi-même ensuite.",
     premiumNote:
-      "Chaque serveur est pensé sur-mesure, dans le moindre détail. Le prix reste indicatif : c'est le soin apporté et le résultat qui comptent.",
+      "Je conçois et structure votre serveur ; vous en gardez les pleins pouvoirs et l'animez en autonomie. Chaque serveur est pensé sur-mesure : le prix reste indicatif, c'est le soin apporté et le résultat qui comptent.",
     formulas: {
       kind: "table",
       tiers: [
-        { name: "Structure", price: "95 €" },
+        { name: "Essentiel", price: "95 €" },
         { name: "Complet", price: "180 €", featured: true },
-        { name: "Clé en main", price: "280 €" },
+        { name: "Signature", price: "280 €" },
       ],
       rows: [
-        { label: "Arborescence + rôles + accueil", values: [true, true, true] },
+        { label: "Structure (salons + catégories)", values: [true, true, true] },
+        { label: "Rôles et permissions de base", values: [true, true, true] },
         {
-          label: "Habillage visuel (icône, bannière, emojis)",
-          values: [false, true, true],
+          label: "Message d'accueil + salon règles",
+          values: [true, true, true],
         },
-        { label: "Onboarding des membres", values: [false, true, true] },
-        { label: "Bots & automatisations", values: [false, false, true] },
+        {
+          label: "Esthétique soignée (noms, émojis)",
+          values: [true, true, true],
+        },
         { label: "Mini-guide de gestion", values: [true, true, true] },
+        { label: "Bots & automatisations", values: [false, true, true] },
+        { label: "Structure étendue (usage avancé)", values: [false, true, true] },
+        {
+          label: "Salons premium (vocal, événements…)",
+          values: [false, false, true],
+        },
+        {
+          label: "Accompagnement à la prise en main",
+          values: [false, false, true],
+        },
       ],
     },
     howItWorks: [
       "Vous me décrivez votre projet et votre univers",
       "Je construis (ou réorganise) votre serveur",
-      "Vous validez, j'ajuste, et je vous remets un mini-guide pour le gérer",
+      "Vous validez, j'ajuste, et je vous remets un mini-guide pour le gérer en autonomie",
     ],
   },
 ];
