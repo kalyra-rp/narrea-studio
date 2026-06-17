@@ -53,80 +53,27 @@ export default async function OfferPage({
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-greige sm:text-lg">
             {offer.promise}
           </p>
-          {offer.hook ? (
-            <p className="mx-auto mt-6 max-w-2xl font-serif text-xl italic leading-relaxed text-prune/80 sm:text-2xl">
-              {offer.hook}
-            </p>
-          ) : null}
         </Container>
       </section>
 
       <section>
         <Container className="py-16 sm:py-20">
           <div className="mx-auto max-w-3xl">
-            {/* Le problème (optionnel) */}
-            {offer.problem ? (
-              <>
-                <h2 className="font-serif text-2xl font-semibold text-prune">
-                  Le problème
-                </h2>
-                <p className="mt-3 text-base leading-relaxed text-ink/80">
-                  {offer.problem}
-                </p>
-              </>
-            ) : null}
-
-            {/* Ce que c'est (optionnel) */}
-            {offer.whatItIs ? (
-              <>
-                <h2 className="mt-12 font-serif text-2xl font-semibold text-prune">
-                  Ce que c&apos;est
-                </h2>
-                <p className="mt-3 text-base leading-relaxed text-ink/80">
-                  {offer.whatItIs}
-                </p>
-              </>
-            ) : null}
-
             {/* Pour qui */}
-            <h2
-              className={`${
-                offer.problem || offer.whatItIs ? "mt-12 " : ""
-              }font-serif text-2xl font-semibold text-prune`}
-            >
+            <h2 className="font-serif text-2xl font-semibold text-prune">
               Pour qui ?
             </h2>
             <p className="mt-3 text-base leading-relaxed text-ink/80">
               {offer.forWhom}
             </p>
 
-            {offer.premiumNote ? (
-              <p className="mt-6 rounded-2xl border rule-gold bg-ivory px-5 py-4 font-serif text-base italic leading-relaxed text-prune/80">
-                {offer.premiumNote}
-              </p>
-            ) : null}
-
-            {/* Formules */}
+            {/* Les formules */}
             <h2 className="mt-12 font-serif text-2xl font-semibold text-prune">
-              {offer.formulas.kind === "single"
-                ? "La formule"
-                : "Les formules"}
+              Les formules
             </h2>
             <div className="mt-5">
               <OfferFormulas formulas={offer.formulas} />
             </div>
-
-            {/* La différence avec une autre offre (optionnel) */}
-            {offer.difference ? (
-              <div className="mt-12 rounded-2xl border rule-gold bg-champagne/30 px-6 py-5">
-                <h2 className="font-serif text-xl font-semibold text-prune">
-                  {offer.difference.title}
-                </h2>
-                <p className="mt-2 text-base leading-relaxed text-ink/80">
-                  {offer.difference.text}
-                </p>
-              </div>
-            ) : null}
 
             {/* Comment ça se passe */}
             <h2 className="mt-12 font-serif text-2xl font-semibold text-prune">
@@ -144,6 +91,18 @@ export default async function OfferPage({
                 </li>
               ))}
             </ol>
+
+            {/* La différence (Audit Clarté & Clarté Pro uniquement) */}
+            {offer.difference ? (
+              <div className="mt-12 rounded-2xl border rule-gold bg-champagne/30 px-6 py-5">
+                <h2 className="font-serif text-xl font-semibold text-prune">
+                  {offer.difference.title}
+                </h2>
+                <p className="mt-2 text-base leading-relaxed text-ink/80">
+                  {offer.difference.text}
+                </p>
+              </div>
+            ) : null}
           </div>
         </Container>
       </section>
