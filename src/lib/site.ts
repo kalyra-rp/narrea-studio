@@ -74,9 +74,13 @@ export type Offer = {
   tagline: string; // une ligne pour la carte catalogue
   priceFrom: string; // « À partir de … » (carte catalogue)
   promise: string;
+  hook?: string; // accroche éditoriale, sous le sous-titre (optionnel)
+  problem?: string; // « Le problème » — paragraphe d'intro (optionnel)
+  whatItIs?: string; // « Ce que c'est » — description (optionnel)
   forWhom: string;
   formulas: OfferFormulas;
   howItWorks: [string, string, string];
+  difference?: { title: string; text: string }; // comparaison avec une autre offre (optionnel)
   premiumNote?: string; // mise en avant « sur-mesure » (Discord)
 };
 
@@ -107,6 +111,41 @@ export const services: Offer[] = [
       "J'analyse et je prépare vos recommandations",
       "Vous recevez votre vidéo + synthèse, et on échange si besoin",
     ],
+  },
+  {
+    slug: "clarte-pro",
+    title: "Clarté Pro",
+    tagline: "Votre offre clarifiée et rédigée, prête à publier.",
+    priceFrom: "290 €",
+    promise: "Votre offre clarifiée et rédigée, prête à publier.",
+    hook: "Vous savez ce que vous valez. Il est temps qu'on le comprenne au premier regard.",
+    problem:
+      "Vous avez une offre solide, mais elle reste floue dans sa formulation : trop large, trop vague, ou simplement « dans votre tête ». Vous l'expliquez différemment à chaque fois, et vous sentez que ça vous fait perdre des clients. Vous n'avez pas besoin qu'on vous dise quoi corriger — vous avez besoin qu'on le fasse avec vous, jusqu'au texte final.",
+    whatItIs:
+      "Clarté Pro, c'est l'étape où votre offre passe du flou au limpide — et du limpide à l'écrit. Ensemble, on clarifie le fond, puis je rédige votre présentation d'offre, prête à publier sur votre site, votre page ou vos profils.",
+    forWhom:
+      "Les indépendants, créateurs et petites structures qui ont une vraie offre, mais peinent à la formuler clairement — et veulent un résultat abouti, pas seulement des pistes.",
+    formulas: {
+      kind: "single",
+      price: "290 €",
+      includes: [
+        "Votre promesse formulée en une phrase claire (qui vous aidez, à quoi, comment)",
+        "Votre cible définie précisément (et qui n'en fait pas partie)",
+        "La structure complète de votre offre : ce que vous proposez, ce qui est inclus, le résultat, ce qui vous distingue",
+        "La rédaction finale de votre présentation d'offre, prête à copier-coller",
+        "Le tout livré dans un document soigné, à votre image",
+        "Un échange pour cadrer le travail + une révision incluse",
+      ],
+    },
+    howItWorks: [
+      "Un échange de cadrage pour cerner votre offre et vos objectifs",
+      "Je clarifie le fond, puis je rédige votre présentation d'offre",
+      "Vous validez (une révision incluse) et recevez votre document prêt à publier",
+    ],
+    difference: {
+      title: "La différence avec l'Audit Clarté",
+      text: "L'Audit Clarté identifie ce qui bloque. Clarté Pro résout : on clarifie ET on rédige votre offre finale.",
+    },
   },
   {
     slug: "kit-presence-pro",

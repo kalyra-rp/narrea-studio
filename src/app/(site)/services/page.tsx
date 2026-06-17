@@ -7,7 +7,7 @@ import { getMergedServices } from "@/lib/services-content";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Le catalogue des offres Narrea Studio : Audit Clarté, Kit Présence Pro, Lancement Signature, Studio Mensuel et Serveur Discord pro.",
+    "Le catalogue des offres Narrea Studio : Audit Clarté, Clarté Pro, Kit Présence Pro, Lancement Signature, Studio Mensuel et Serveur Discord pro.",
 };
 
 export const dynamic = "force-dynamic";
